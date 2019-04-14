@@ -12,6 +12,10 @@ export default [
     // 有name值的叫做命名路由，这里的name就是router-link里面绑定的to
     path: '/about',
     name: 'about',
+    props: {
+      // 这里如果有值，会覆盖组建里面的apple
+      food: 'banana'
+    },
     // 懒加载
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
