@@ -2,9 +2,14 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link v-bind:to="{ name: 'about'}">About</router-link>
     </div>
     <router-view/>
+    <!-- 
+      命名视图
+     -->
+     <router-view name="email"></router-view>
+     <router-view name="tel"/>
   </div>
 </template>
 

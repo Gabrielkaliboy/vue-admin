@@ -1,18 +1,68 @@
-import Home from '../views/Home.vue'
+import Home from '@/views/Home.vue'
 
 export default [
   {
     path: '/',
+    // 设置别名
+    alias: '/home_page',
     name: 'home',
     component: Home
   },
   {
+    // 有name值的叫做命名路由，这里的name就是router-link里面绑定的to
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    // 懒加载
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    // 动态路由组件
+    path: '/argu/:name',
+    name: 'argu',
+    component: () => import('@/views/argu.vue'),
+    // 将路由里面的props赋值这里
+    props: true
+  },
+  {
+    // 嵌套路由
+    path: '/parent',
+    name: 'parent',
+    component: () => import('@/views/parent.vue'),
+    children: [
+      {
+        // 这里的child不要加斜线，作为嵌套路由会自动补齐
+        path: 'child',
+        component: () => import('@/views/child.vue')
+      }
+    ]
+  },
+  {
+    path: '/named_view',
+    // 多个路由的时候这里要加s
+    components: {
+      // 当有的router-view里没有name的时候，可以用default告诉
+      // 他渲染哪个组建
+      default: () => import('@/views/child.vue'),
+      email: () => import('@/views/email.vue'),
+      tel: () => import('@/views/tel.vue')
+    }
+  },
+  {
+    // 重定向：将我们当前访问的url重新定向到另一个url
+    path: '/main',
+    // redirect: '/'这种写法或者是下面这种
+    // redirect: {
+    //   name: 'home'
+    // }
+    // 或者函数
+    redirect: to => {
+      console.log(to)
+      // 我们这里可以做一些逻辑判断，或者直接返回一个对象
+      return {
+        // 直接简写
+        name: '/'
+      }
+    }
   }
 
 ]
