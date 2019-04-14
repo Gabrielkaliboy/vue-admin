@@ -16,6 +16,7 @@ export default {
   name: 'home',
   props: {
     food: {
+      //http://localhost:8080/#/?food=banana 有这个参数就是banana没有就是默认
       type: String,
       default: 'apple'
     }
