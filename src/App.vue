@@ -4,16 +4,41 @@
       <router-link to="/">Home</router-link> |
       <router-link v-bind:to="{ name: 'about'}">About</router-link>
     </div>
-    <router-view/>
-    <!-- 
-      命名视图
-     -->
-     <router-view name="email"></router-view>
-     <router-view name="tel"/>
+    <!--
+      设置过度动画
+    -->
+    <transition-group name="router">
+      <router-view key = 'default'/>
+      <!-- 
+        命名视图
+      -->
+      <router-view name="email" key=" = 'email'"></router-view>
+      <router-view name="tel" key ='tel'/>
+    </transition-group>
   </div>
 </template>
 
 <style lang="less">
+
+.router-enter{
+  opacity: 0
+}
+.router-enter-active{
+  transition: opacity 1s ease
+}
+.router-enter-to{
+  opacity: 1
+}
+.router-leave{
+  opacity: 0
+}
+.router-leave-active{
+  transition: opacity 1s ease
+}
+.router-leave-to{
+  opacity: 1
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
