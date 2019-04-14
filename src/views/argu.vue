@@ -20,6 +20,11 @@ export default {
              type:String,
              default: "lison"
          }
+     },
+     beforeRouteUpdate(to, from, next){
+         // 值由url发生变化，这个组建是一个复用组建的时候才会发生调用
+         console.log(to.name,from.name)
+         // 组件已经渲染完了，可以调用this
      }
 }
 </script>

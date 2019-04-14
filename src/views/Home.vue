@@ -40,7 +40,8 @@ export default {
   },
   // 一个面用到了用户编辑，编辑没有提交，这时候用户离开就用到了这个方法
   // 提示他“编辑还没有完成，是否要离开"
-  beforeRouteEnter(to,from,next){
+  beforeRouteLeave(to,from,next){
+    // 实例已经渲染完了，可以使用this
     const leave = confirm('您确认要离开吗？')
     if( leave ){
       // 如果点了确认，就做路由跳转
