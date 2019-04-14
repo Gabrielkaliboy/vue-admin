@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
+import { setTitle } from '@/lib/util'
 Vue.use(Router)
 
 const router = new Router({
   routes
 })
+
+// 写setTitle函数
 
 // 多一个登陆接口，实际中是要用接口来实现的,这个属性来判断是否登陆
 // 尝试修改属性为true试试
@@ -13,6 +16,8 @@ const HAS_LOGINED = true
 
 // 方法beforeEach是跳转之前对应的逻辑
 router.beforeEach((to, from, next) => {
+  // 获取路由源信息,并设置当前页面标题
+  to.meta && setTitle(to.meta.title)
   // to:要跳转的页面；from:当前要离开的路由对象；next:一个函数，你要确定要做
   // 跳转，会用到这个next函数
   // 如果当前的页面不是登陆页面

@@ -37,7 +37,11 @@ export default [
       food: 'banana'
     },
     // 懒加载
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    // 路由源信息
+    meta: {
+      title: '关于'
+    }
   },
   {
     // 动态路由组件
