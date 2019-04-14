@@ -11,7 +11,22 @@ export default [
     props: route => ({
       // 函数返回的是一个对象,根据当前组建里面的food值来设置此处的food,查看home组建的food
       food: route.query.food
-    })
+    }),
+    // 路由独享守卫
+    beforeEnter: (to, from, next) => {
+      // if (from.name === 'about') {
+      //   console.log('这是从about登录页面来的')
+      // } else {
+      //   console.log('这不是从about登陆页面来的')
+      // }
+      // 处理完了所有的逻辑以后，要调用next()函数，否则路由不起效果
+      next()
+    }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login.vue')
   },
   {
     // 有name值的叫做命名路由，这里的name就是router-link里面绑定的to

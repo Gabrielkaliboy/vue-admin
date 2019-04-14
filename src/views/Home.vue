@@ -21,6 +21,35 @@ export default {
       default: 'apple'
     }
   },
+  // 组建内的守卫,渲染组建路由，在确认之前调用
+  beforeRouteEnter (to, from, next) {
+    // to:当前路由的对像，from：上一个路由对象
+    console.log(to.name)
+    console.log(from.name)
+    // 注意，由于组建还没有被渲染，所以这里的this是获取不到的，如果
+    // 想用，就用下面这个方法
+    // next(
+    //   // vm就是路由实例
+    //   vm => {
+    //     console.log(vm);
+    //   }
+    // )
+    // 这个函数调用问了以后一定要调用next函数，否则页面不会变化
+    next()
+
+  },
+  // 一个面用到了用户编辑，编辑没有提交，这时候用户离开就用到了这个方法
+  // 提示他“编辑还没有完成，是否要离开"
+  beforeRouteEnter(to,from,next){
+    const leave = confirm('您确认要离开吗？')
+    if( leave ){
+      // 如果点了确认，就做路由跳转
+      next()
+    }else{
+      // 没有就不跳转
+      next(false)
+    }
+  },
   methods: {
     handleClick:function(type){
       //-1是后退一页，1是前进一页 
