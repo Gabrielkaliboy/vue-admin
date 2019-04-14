@@ -59,4 +59,21 @@ router.afterEach((to, from) => {
   // 这里面没有参数next
   // logining = false
 })
+
+/*
+ 完整的导航解析流程
+ 1.导航被触发
+ 2.在失活的组建（即将离开的页面组建）里调用离开守卫beforeRouteLeave
+ 3.调用全局的前置守卫 beforeEach
+ 4.在重用的组建里调用beforeRouteUpdate
+ 5.调用路由独享守卫 beforeEnter
+ 6.调用异步路由组建
+ 7.在被激活的组建（即将进入的页面组建）里调用beforeRouteEnter
+ 8.调用全局的解析守卫 beforeResolve  导航确认之前，异步路由组建解析之后d调用
+ 9. 导航确认
+ 10. 调用全局的后置守卫 afterEach
+ 11. 触发DOM渲染更新
+ 12. 用创建号的实例调用beforeRouterEnter守卫里传给next的回调函数
+*/
+
 export default router
