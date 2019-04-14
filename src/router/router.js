@@ -6,7 +6,12 @@ export default [
     // 设置别名
     alias: '/home_page',
     name: 'home',
-    component: Home
+    component: Home,
+    // 函数模式
+    props: route => ({
+      // 函数返回的是一个对象,根据当前组建里面的food值来设置此处的food,查看home组建的food
+      food: route.query.food
+    })
   },
   {
     // 有name值的叫做命名路由，这里的name就是router-link里面绑定的to

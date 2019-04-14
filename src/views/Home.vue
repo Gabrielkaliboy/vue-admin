@@ -6,7 +6,7 @@
     <button @click="handleClick('back')">返回上一页</button>
     <button @click="handleClick('push')">跳转到parent</button>
     <button @click="handleClick('replace')">替换</button>
-
+    <div>{{ food }}</div>
   </div>
 </template>
 
@@ -14,6 +14,12 @@
 
 export default {
   name: 'home',
+  props: {
+    food: {
+      type: String,
+      default: 'apple'
+    }
+  },
   methods: {
     handleClick:function(type){
       //-1是后退一页，1是前进一页 
