@@ -1,5 +1,5 @@
 import Home from '@/views/Home.vue'
-
+import testDemo from '@/views/testDemo/router'
 export default [
   {
     path: '/',
@@ -97,11 +97,17 @@ export default [
     component: () => import('@/views/store.vue')
   },
   {
+    path: '/test',
+    // component: () => import('@/views/test.vue')
+    component: function (resolve) { require(['@/views/test'], resolve) },
+    meta: { title: '管理首页', keepAlive: true },
+    children: [].concat(testDemo)
+  },
+  {
     // 使用history模式的时候，适配一下如果没有匹配到路由，都跳转到error_404
     // 这个匹配一定要放到最后，路由匹配有一个优先级原则，如果放在前面了，会导致后面的
     // 不能全部都跳到了404
     path: '*',
     component: () => import('@/views/error_404.vue')
   }
-
 ]
