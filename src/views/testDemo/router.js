@@ -1,9 +1,11 @@
 const mainRouter = [
   {
-    name: 'liefCycle',
-    path: './leftCycle',
+    name: 'lifeCycle',
+    path: '/test/lifeCycle',
     component: function (resolve) {
-      require(['./leftCycle'], resolve)
+      require(['./lifeCycle.vue'], resolve)
     }
   }
 ]
+
+export default mainRouter
